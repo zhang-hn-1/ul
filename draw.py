@@ -46,6 +46,7 @@ plt.rcParams.update(
     }
 )
 
+
 def make_panel_a():
     baseline_color = "#7F7F7F"
     ours_color = "#D55E00"
@@ -75,7 +76,7 @@ def make_panel_a():
         "",
         xy=(ours["FPS"], ours["AP50"]),
         xytext=(baseline["FPS"], baseline["AP50"]),
-        arrowprops=dict(arrowstyle="->", lw=1.8, color="#333333"),
+        arrowprops={"arrowstyle": "->", "lw": 1.8, "color": "#333333"},
     )
 
     ax.text(
