@@ -8,12 +8,10 @@ from copy import deepcopy
 from pathlib import Path
 
 import torch
-import torch.nn as nn
+from torch import nn
 
 from ultralytics.nn.autobackend import check_class_names
 from ultralytics.nn.modules import (
-    ASFF_Concat,
-    EMA,
     AIFI,
     C1,
     C2,
@@ -21,6 +19,7 @@ from ultralytics.nn.modules import (
     C3,
     C3TR,
     ELAN1,
+    EMA,
     OBB,
     OBB26,
     PSA,
@@ -30,6 +29,7 @@ from ultralytics.nn.modules import (
     A2C2f,
     AConv,
     ADown,
+    ASFF_Concat,
     Bottleneck,
     BottleneckCSP,
     C2f,
@@ -1379,11 +1379,9 @@ class SafeClass:
 
     def __init__(self, *args, **kwargs):
         """Initialize SafeClass instance, ignoring all arguments."""
-        pass
 
     def __call__(self, *args, **kwargs):
         """Run SafeClass instance, ignoring all arguments."""
-        pass
 
 
 class SafeUnpickler(pickle.Unpickler):
@@ -1722,7 +1720,7 @@ def parse_model(d, ch, verbose=True):
             c1 = ch[f]
             args = [*args[1:]]
         elif m is EMA:
-            c2 = ch[f]   # 确保输出通道数等于输入通道数
+            c2 = ch[f]  # 确保输出通道数等于输入通道数
             args = [c2]  # 将自动缩放后的通道数传给 EMA
         else:
             c2 = ch[f]
